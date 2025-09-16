@@ -1,25 +1,14 @@
 <div class="app-shell" *ngIf="isAuthenticated(); else loginOnly">
-  <header class="topbar">
-    <button class="menu-btn" (click)="isSidebarOpen = !isSidebarOpen" aria-label="Toggle Menu">☰</button>
-    <div class="brand">ELAMS</div>
-    <nav class="topnav">
-      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-      <a routerLink="/attendance" routerLinkActive="active">Attendance</a>
-      <a routerLink="/leave-requests" routerLinkActive="active">Leave</a>
-      <a routerLink="/leave-balance" routerLinkActive="active">Balance</a>
-      <a routerLink="/shifts" routerLinkActive="active">Shifts</a>
-      <a routerLink="/reports" routerLinkActive="active">Reports</a>
-    </nav>
-    <button class="menu-btn" (click)="logout()">Logout</button>
-  </header>
   <div class="body">
     <aside class="sidebar" [class.open]="isSidebarOpen">
+      <div class="brand">ELAMS</div>
       <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <a routerLink="/attendance" routerLinkActive="active">Attendance</a>
       <a routerLink="/leave-requests" routerLinkActive="active">Leave Requests</a>
       <a routerLink="/leave-balance" routerLinkActive="active">Leave Balance</a>
       <a routerLink="/shifts" routerLinkActive="active">Shifts</a>
       <a routerLink="/reports" routerLinkActive="active">Reports</a>
+      <button class="logout" (click)="logout()">Logout</button>
     </aside>
     <main class="content">
       <router-outlet />

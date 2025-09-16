@@ -11,7 +11,7 @@ import { LeaveType } from '../../models/leave.model';
   imports: [CommonModule, FormsModule],
   template: `
   <section class="page">
-    <h2>Leave Requests</h2>
+    <h2>Leave Management</h2>
     <form class="form" (ngSubmit)="submit()">
       <label>
         Type
@@ -31,29 +31,35 @@ import { LeaveType } from '../../models/leave.model';
         Reason
         <input type="text" [(ngModel)]="form.reason" name="reason" placeholder="Optional" />
       </label>
-      <button class="btn primary">Submit</button>
+      <button class="btn primary">New Leave Request</button>
     </form>
-
-    <table class="table">
-      <thead><tr><th>Date</th><th>Type</th><th>Range</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr *ngFor="let r of requests">
-          <td>{{ r.created }}</td>
-          <td>{{ r.type }}</td>
-          <td>{{ r.from }} → {{ r.to }}</td>
-          <td><span class="badge" [class.approved]="r.status==='Approved'" [class.pending]="r.status==='Pending'" [class.rejected]="r.status==='Rejected'">{{ r.status }}</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card">
+      <div class="card-title">Leave Requests History</div>
+      <table class="table">
+        <thead><tr><th>Type</th><th>Start Date</th><th>End Date</th><th>Days</th><th>Status</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr *ngFor="let r of requests">
+            <td>{{ r.type }}</td>
+            <td>{{ r.from }}</td>
+            <td>{{ r.to }}</td>
+            <td>{{ calcDays(r.from,r.to) }}</td>
+            <td><span class="badge" [class.approved]="r.status==='Approved'" [class.pending]="r.status==='Pending'" [class.rejected]="r.status==='Rejected'">{{ r.status }}</span></td>
+            <td>{{ r.reason || '-' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
   `,
   styles: [`
   .page{display:flex;flex-direction:column;gap:1rem}
-  .form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;align-items:end;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem}
+  .form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;align-items:end;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1rem}
   label{display:flex;flex-direction:column;gap:.25rem;color:#374151;font-size:.9rem}
   input,select{height:38px;border:1px solid #d1d5db;border-radius:8px;padding:0 .5rem}
   .btn{height:38px;border:0;border-radius:8px;padding:0 1rem;cursor:pointer}
   .btn.primary{background:#22c55e;color:#fff}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1rem}
+  .card-title{font-weight:600;color:#111827;margin-bottom:.5rem}
   .table{width:100%;border-collapse:separate;border-spacing:0 8px}
   th,td{text-align:left;padding:.75rem;background:#fff}
   thead th{color:#6b7280;background:#f3f4f6}
@@ -75,6 +81,14 @@ export class LeaveRequestsComponent {
   submit(){
     this.leave.submitRequest(this.form.type, this.form.from, this.form.to, this.form.reason);
     this.form = { type: 'Sick', from: '', to: '', reason: '' };
+  }
+
+  calcDays(from: string, to: string){
+    if(!from || !to) return 0;
+    const a = new Date(from).getTime();
+    const b = new Date(to).getTime();
+    const days = Math.round((b - a) / (1000*60*60*24)) + 1;
+    return Math.max(days, 1);
   }
 }
 

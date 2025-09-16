@@ -18,6 +18,8 @@ export class AppComponent {
   isAuthenticated(){ return this.auth.isAuthenticated(); }
 
   logout(){
+    const ok = window.confirm('Are you sure you want to logout?');
+    if(!ok) return;
     this.auth.logout();
     this.router.navigate(['/login']);
   }

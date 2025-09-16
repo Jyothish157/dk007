@@ -4,7 +4,7 @@ import { LeaveBalanceItem, LeaveRequest, LeaveType } from '../models/leave.model
 @Injectable({ providedIn: 'root' })
 export class LeaveService {
   balances = signal<LeaveBalanceItem[]>([
-    { type: 'Sick', balanceDays: 5 },
+    { type: 'Sick', balanceDays: 9 },
     { type: 'Vacation', balanceDays: 12 },
     { type: 'Casual', balanceDays: 3 },
   ]);
@@ -14,7 +14,7 @@ export class LeaveService {
   ]);
 
   submitRequest(type: LeaveType, from: string, to: string, reason?: string) {
-    const req: LeaveRequest = { created: new Date().toLocaleDateString(), type, from, to, status: 'Pending' };
+    const req: LeaveRequest = { created: new Date().toLocaleDateString(), type, from, to, status: 'Pending', reason };
     this.requests.update(list => [req, ...list]);
   }
 }

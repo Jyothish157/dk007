@@ -34,24 +34,29 @@ import { ShiftService } from '../../services/shift.service';
       <button class="btn primary">Request Swap</button>
     </form>
 
-    <table class="table">
-      <thead><tr><th>Date</th><th>Shift</th></tr></thead>
-      <tbody>
-        <tr *ngFor="let s of shifts()">
-          <td>{{ s.date }}</td>
-          <td>{{ s.time }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card">
+      <div class="card-title">Weekly Schedule</div>
+      <table class="table">
+        <thead><tr><th>Date</th><th>Shift</th></tr></thead>
+        <tbody>
+          <tr *ngFor="let s of shifts()">
+            <td>{{ s.date }}</td>
+            <td>{{ s.time }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
   `,
   styles: [`
   .page{display:flex;flex-direction:column;gap:1rem}
-  .form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;align-items:end;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem}
+  .form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;align-items:end;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1rem}
   label{display:flex;flex-direction:column;gap:.25rem;color:#374151;font-size:.9rem}
   input,select{height:38px;border:1px solid #d1d5db;border-radius:8px;padding:0 .5rem}
   .btn{height:38px;border:0;border-radius:8px;padding:0 1rem;cursor:pointer}
   .btn.primary{background:#22c55e;color:#fff}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1rem}
+  .card-title{font-weight:600;color:#111827;margin-bottom:.5rem}
   .table{width:100%;border-collapse:separate;border-spacing:0 8px}
   th,td{text-align:left;padding:.75rem;background:#fff}
   thead th{color:#6b7280;background:#f3f4f6}

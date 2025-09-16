@@ -6,6 +6,7 @@ export interface LeaveRequest {
   from: string;
   to: string;
   status: 'Pending' | 'Approved' | 'Rejected';
+  reason?: string;
 }
 
 export interface LeaveBalanceItem {
