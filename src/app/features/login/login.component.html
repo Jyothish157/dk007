@@ -1,0 +1,24 @@
+<div class="login-wrap">
+  <form class="card" (ngSubmit)="submit()">
+    <h2>Sign in</h2>
+    <label>
+      Username
+      <input [(ngModel)]="form.username" name="username" required />
+    </label>
+    <label>
+      Password
+      <input type="password" [(ngModel)]="form.password" name="password" required />
+    </label>
+    <label>
+      Role
+      <select [(ngModel)]="form.role" name="role" required>
+        <option value="employee">Employee</option>
+        <option value="manager">Manager</option>
+      </select>
+    </label>
+    <button class="btn primary">Login</button>
+    <div class="error" *ngIf="error">{{ error }}</div>
+  </form>
+</div>
+
+

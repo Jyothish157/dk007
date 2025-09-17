@@ -1,0 +1,41 @@
+<section class="page">
+  <h2>Shift Management</h2>
+  <form class="form" (ngSubmit)="requestSwap()">
+    <label>
+      Date
+      <input type="date" [(ngModel)]="swap.date" name="date" required />
+    </label>
+    <label>
+      From Shift
+      <select [(ngModel)]="swap.from" name="from" required>
+        <option>Morning</option>
+        <option>Evening</option>
+        <option>Night</option>
+      </select>
+    </label>
+    <label>
+      To Shift
+      <select [(ngModel)]="swap.to" name="to" required>
+        <option>Morning</option>
+        <option>Evening</option>
+        <option>Night</option>
+      </select>
+    </label>
+    <button class="btn primary">Request Swap</button>
+  </form>
+
+  <div class="card">
+    <div class="card-title">Weekly Schedule</div>
+    <table class="table">
+      <thead><tr><th>Date</th><th>Shift</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let s of shifts()">
+          <td>{{ s.date }}</td>
+          <td>{{ s.time }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
