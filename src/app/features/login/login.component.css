@@ -1,8 +1,16 @@
-.login-wrap{display:grid;place-items:center;min-height:100dvh;padding:1rem;background:linear-gradient(135deg,#0f172a,#111827)}
-.card{width:100%;max-width:380px;display:flex;flex-direction:column;gap:.75rem;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;box-shadow:0 8px 30px rgba(2,6,23,.25)}
+.login-wrap{display:grid;place-items:center;min-height:100dvh;padding:1rem;background:url('image.jpg') no-repeat center center fixed;background-size:cover}
+.card{width:100%;max-width:380px;display:flex;flex-direction:column;gap:.75rem;background:rgba(60,60,60,0.4);border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;box-shadow:0 8px 30px rgba(2,6,23,.25)}
 h2{margin:0 0 .5rem;color:#0f172a}
-label{display:flex;flex-direction:column;gap:.25rem;color:#374151;font-size:.9rem}
-input,select{height:40px;border:1px solid #d1d5db;border-radius:8px;padding:0 .5rem}
+label{display:flex;flex-direction:column;gap:.25rem;color:#000;font-size:.9rem;font-weight:bold} /* Make label text bold */
+input,select{height:40px;border:1px solid #d1d5db;border-radius:8px;padding:0 .5rem;background:rgba(255,255,255,0.4); /* Transparent input/select */font-weight:bold;color:#000} /* Bold text inside input/select */
+input {
+    color: #000;
+    font-weight: bold;
+}
+select {
+    color: #000;
+    font-weight: bold;
+}
 .btn{height:40px;border:0;border-radius:8px;padding:0 1rem;cursor:pointer}
 .btn.primary{background:#22c55e;color:#fff}
 .error{color:#dc2626}
